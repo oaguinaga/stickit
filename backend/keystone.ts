@@ -1,10 +1,11 @@
-import { User } from './schemas/User';
 import { config, createSchema } from '@keystone-next/keystone/schema';
 import { createAuth } from '@keystone-next/auth';
 import {
   withItemData,
   statelessSessions,
 } from '@keystone-next/keystone/session';
+import { User } from './schemas/User';
+import { Product } from './schemas/Product';
 import 'dotenv/config';
 
 const databaseURL =
@@ -41,17 +42,17 @@ export default withAuth(
     lists: createSchema({
       // Schema items go in here
       User,
+      Product,
     }),
     ui: {
       // Show the UI only for people that pass this test
-      isAccessAllowed: ({ session }) => {
-        return !!session?.data;
-      },
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      isAccessAllowed: ({ session }) => !!session?.data,
     },
     // TODO: Add session values here
     session: withItemData(statelessSessions(sessionConfig), {
       // graphQL query
-      User: `id`,
+      User: 'id',
     }),
   })
 );
