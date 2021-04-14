@@ -14,8 +14,8 @@ const GlobalStyles = createGlobalStyle`
     --black: #2f3640;
     --gray: #747d8c;
     --grey: var(--gray);
-    --light-gray: #a4b0be;
-    --light-grey: var(--lightGray);
+    --lightGray: #dcdde1;
+    --lightGrey: var(--lightGray);
     --off-white: #f1f2f6;
     --max-width: 1000px;
     --bs:
