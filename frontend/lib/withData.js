@@ -8,13 +8,16 @@ import { endpoint, prodEndpoint } from '../config';
 function createClient({ headers, initialState }) {
   return new ApolloClient({
     link: ApolloLink.from([
+      // Error handling link from ApolloClient
       onError(({ graphQLErrors, networkError }) => {
+        // graphQL error like password is wrong or requesting a field that does not exists
         if (graphQLErrors)
           graphQLErrors.forEach(({ message, locations, path }) =>
             console.log(
               `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
             )
           );
+        // Network error (backend not running, cors...)
         if (networkError)
           console.log(
             `[Network error]: ${networkError}. Backend is unreachable. Is it running?`
