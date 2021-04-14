@@ -1,16 +1,18 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-const Item = styled.div`
+const ItemStyles = styled.div`
   background: white;
   border: 1px solid var(--offWhite);
   box-shadow: var(--bs);
   position: relative;
   display: flex;
   flex-direction: column;
+  border-radius: 1rem;
   img {
     width: 100%;
     height: 400px;
     object-fit: cover;
+    border-radius: inherit;
   }
   p {
     line-height: 2;
@@ -33,6 +35,6 @@ const Item = styled.div`
       padding: 1rem;
     }
   }
-`;
+`
 
-export default Item;
+export default ItemStyles
