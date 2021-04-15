@@ -1,6 +1,7 @@
 module.exports = {
   extends: ['wesbos'],
   rules: {
+    'no-restricted-globals': 0,
     'prettier/prettier': [
       'error',
       {
