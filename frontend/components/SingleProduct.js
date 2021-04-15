@@ -2,6 +2,7 @@ import { gql, useQuery } from '@apollo/client'
 import Head from 'next/head'
 import styled from 'styled-components'
 import DisplayError from './ErrorMessage'
+import { SINGLE_ITEM_QUERY } from '../lib/gql'
 
 const ProductStyles = styled.div`
   display: grid;
@@ -14,23 +15,6 @@ const ProductStyles = styled.div`
     width: 100%;
     height: 100%;
     object-fit: contain;
-  }
-`
-
-const SINGLE_ITEM_QUERY = gql`
-  query SINGLE_ITEM_QUERY($id: ID!) {
-    Product(where: { id: $id }) {
-      name
-      price
-      description
-      id
-      photo {
-        altText
-        image {
-          publicUrlTransformed
-        }
-      }
-    }
   }
 `
 
