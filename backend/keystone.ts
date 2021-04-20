@@ -9,6 +9,7 @@ import { Product } from './schemas/Product';
 import { ProductImage } from './schemas/ProductImage';
 import 'dotenv/config';
 import { insertSeedData } from './seed-data';
+import { sendPasswordResetEmail } from './lib/mail';
 
 const databaseURL =
   process.env.DATABASE_URL || 'mongodb://localhost/keystone-stickit';
@@ -25,6 +26,11 @@ const { withAuth } = createAuth({
   initFirstItem: {
     fields: ['name', 'email', 'password'],
     // Add initial roles here
+  },
+  passwordResetLink: {
+    sendToken: async ({ identity, token }) => {
+      await sendPasswordResetEmail(token, identity);
+    },
   },
 });
 
