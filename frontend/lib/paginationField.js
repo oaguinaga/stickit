@@ -25,17 +25,17 @@ export default function paginationField() {
       }
 
       if (items.length !== first) {
-        console.log(`we don't have any items `)
+        // console.log(`we don't have any items `)
         // we don't have any items we must go to the network to fetch them
         return false
       }
 
       // if there are items the return them from the cache and we don't need to go to the network
       if (items.length) {
-        console.log(
-          `There are ${items.length} items in the cache! Gonna send them to apollo`,
-          { items }
-        )
+        // console.log(
+        //   `There are ${items.length} items in the cache! Gonna send them to apollo`,
+        //   { items }
+        // )
         return items
       }
 
@@ -50,7 +50,7 @@ export default function paginationField() {
     merge(existing, incoming, { args }) {
       const { skip } = args
       // This runs when the Apollo client comes back from the network with our product
-      console.log(`Merging items from the network ${incoming.length}`)
+      // console.log(`Merging items from the network ${incoming.length}`)
       const merged = existing ? existing.slice(0) : []
 
       // add the ONLY the new incoming items to the exact position on the merged cache. since we show 2 elements per page (skip = 2) we add two new entries to merged array in the position skip + (number of items we already have before)
