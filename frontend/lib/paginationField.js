@@ -48,11 +48,9 @@ export default function paginationField() {
     },
 
     merge(existing, incoming, { args }) {
-      console.log('incoming', incoming)
       const { skip } = args
       // This runs when the Apollo client comes back from the network with our product
       console.log(`Merging items from the network ${incoming.length}`)
-      console.log('existing', { existing })
       const merged = existing ? existing.slice(0) : []
 
       // add the ONLY the new incoming items to the exact position on the merged cache. since we show 2 elements per page (skip = 2) we add two new entries to merged array in the position skip + (number of items we already have before)
