@@ -34,7 +34,6 @@ export default function RemoveFromCart({ id }) {
     //   },
     // },
   })
-  console.log(id)
   return (
     <BigButton
       disabled={loading}
