@@ -27,6 +27,7 @@ const CartItemStyles = styled.li`
 
 function CartItem({ cartItem }) {
   const { product } = cartItem
+  if (!product) return null
   return (
     <CartItemStyles>
       <img
