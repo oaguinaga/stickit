@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 // at it's simplest, access control is either a ter or no value depending on the users session
 
 import { permissionsList } from './schemas/fields';
@@ -74,5 +76,18 @@ export const rules = {
     }
     // 2. If not, do they own this item?
     return { order: { user: { id: session.itemId } } };
+  },
+
+  canManageUsers({ session }: ListAccessArgs) {
+    if (!isSignedIn({ session })) {
+      return false;
+    }
+    // 1. Do they have the permission of canManageProducts
+    if (permissions.canManageUsers({ session })) {
+      return true;
+    }
+    console.log(`${{ session }}`);
+    // 2. Otherwise they may only update themselves
+    return { id: session.itemId };
   },
 };
