@@ -15,6 +15,7 @@ import 'dotenv/config';
 import { insertSeedData } from './seed-data';
 import { sendPasswordResetEmail } from './lib/mail';
 import { extendGraphqlSchema } from './mutations';
+import { permissionsList } from './schemas/fileds';
 
 const databaseURL =
   process.env.DATABASE_URL || 'mongodb://localhost/keystone-stickit';
@@ -76,7 +77,7 @@ export default withAuth(
     // TODO: Add session values here
     session: withItemData(statelessSessions(sessionConfig), {
       // graphQL query
-      User: 'id',
+      User: `id name email role { ${permissionsList.join(' ')} }`,
     }),
   })
 );
